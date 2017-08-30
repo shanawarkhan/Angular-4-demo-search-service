@@ -6,3 +6,9 @@
 button {
   margin-top: 10px;
 }
+
+.container {
+	border: 1px dotted gray;
+	padding: 30px;
+	margin: 30px;
+}

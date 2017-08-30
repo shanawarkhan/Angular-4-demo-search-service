@@ -11,58 +11,56 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class EditComponent implements OnInit, OnDestroy {
-  // person: Person;
-  // editName: string;
-  // editPhone: string;
-  // editAddress: Address;
+  person: Person;
+  editName: string;
+  editPhone: string;
+  editAddress: Address;
 
-  // sub: Subscription;
+  _Subscription: Subscription;
 
-  // constructor(private route: ActivatedRoute,
-  //             private router: Router,
-  //             private service: SearchService) {
-  // }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private service: SearchService) {
+  }
 
-  // ngOnInit() {
-  //   this.sub = this.route.params.subscribe(params => {
-  //     let id = + params['id']; // (+) converts string 'id' to a number
-  //     this.service.get(id).subscribe(person => {
-  //       if (person) {
-  //         this.editName = person.name;
-  //         this.editPhone = person.phone;
-  //         this.editAddress = person.address;
-  //         this.person = person;
-  //       } else {
-  //         this.gotoList();
-  //       }
-  //     });
-  //   });
-  // }
+  ngOnInit() {
+    this._Subscription = this.route.params.subscribe(params => {
+      let id = + params['id']; // (+) converts string 'id' to a number
+      this.service.get(id).subscribe(person => {
+        if (person) {
+            this.editName     = person.name;
+            this.editPhone    = person.phone;
+            this.editAddress  = person.address;
+            this.person       = person;
+        } else {
+            this.gotoList();
+        }
+      });
+    });
+  }
 
-  // ngOnDestroy() {
-  //   this.sub.unsubscribe();
-  // }
+  ngOnDestroy() {
+    this._Subscription.unsubscribe();
+  }
 
-  // cancel() {
-  //   this.router.navigate(['/search']);
-  // }
+  cancel() {
+    this.router.navigate(['/search']);
+  }
 
-  // save() {
-  //   this.person.name = this.editName;
-  //   this.person.phone = this.editPhone;
-  //   this.person.address = this.editAddress;
-  //   this.service.save(this.person);
-  //   this.gotoList();
-  // }
+  save() {
+      this.person.name = this.editName;
+      this.person.phone = this.editPhone;
+      this.person.address = this.editAddress;
+      this.service.save(this.person);
+      this.gotoList();
+  }
 
-  // gotoList() {
-  //   if (this.person) {
-  //     this.router.navigate(['/search', {term: this.person.name} ]);
-  //   } else {
-  //     this.router.navigate(['/search']);
-  //   }
-  // }
-  ngOnInit() { }
-
-  ngOnDestroy() { }
+  gotoList() {
+      if (this.person) {
+        this.router.navigate(['/search', {term: this.person.name} ]);
+      } else {
+        this.router.navigate(['/search']);
+      }
+  }
+  
 }

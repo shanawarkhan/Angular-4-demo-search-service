@@ -21,7 +21,7 @@ td {
   padding: 8px;
 }
 
-button { 
+button {
 	border: 1px solid black;
 	margin: 10px;
 
@@ -30,3 +30,7 @@ button {
  input {
  	border: 2px solid green;
  }*/
+
+ .container{
+   margin: 30px;
+ }
