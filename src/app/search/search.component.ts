@@ -9,12 +9,12 @@ import { Person, SearchService } from '../shared/';
 export class SearchComponent implements OnInit {
 	  query: string;
 	  searchResults: Array<Person>;
-	  searchAllResults: Array<Person>;
+	  getAllResults: Array<Person>;
 
 	  constructor(private _SearchService: SearchService) {}
 
 	_getAll(): void {
-	  this._SearchService.getAll().subscribe(data => { this.searchAllResults = data; },
+	  this._SearchService.getAll().subscribe(data => { this.getAllResults = data; },
 	    error => console.log(error)
 	  );
 	}
@@ -26,8 +26,8 @@ export class SearchComponent implements OnInit {
   		);
   	}
 
-  ngOnInit() {
+  	ngOnInit() {
   	
-  }
+  	}
 
 }
