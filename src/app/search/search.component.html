@@ -1,0 +1,45 @@
+
+
+	<div class="container">
+		
+		<h2>Search</h2>
+
+
+		<div class="row">
+			<div class="col-sm-6">
+				<form>
+					<input type="search" name="query" [(ngModel)]="query" (keyup.enter)="search()">
+					<button type="button" (click)="search()">Search</button>
+					<button type="button" (click)="_getAll()">Get All!</button> <br/>
+				</form>
+
+				<!-- For displaying raw json data -->
+				<pre>{{searchAllResults | json}}</pre>
+			</div>
+
+			<div class="col-sm-6">
+				<!-- For proper display in table -->
+				<table *ngIf="searchResults">
+				  <thead>
+				  <tr>
+				    <th>Name</th>
+				    <th>Phone</th>
+				    <th>Address</th>
+				  </tr>
+				  </thead>
+				  <tbody>
+				  <tr *ngFor="let person of searchResults; let i=index">
+				    <td><a [routerLink]="['/edit', person.id]">{{person.name}}</a></td>
+				    <td>{{person.phone}}</td>
+				    <td>{{person.address.street}}<br/>
+				      {{person.address.city}}, {{person.address.state}} {{person.address.zip}}
+				    </td>
+				  </tr>
+				  </tbody>
+				</table>
+					</div>
+				</div>
+	
+		
+
+</div>
